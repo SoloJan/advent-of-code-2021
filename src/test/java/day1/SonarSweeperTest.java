@@ -10,7 +10,7 @@ class SonarSweeperTest {
      * A test with test the result of the example, in the readme of day1
      */
     @Test
-    void testExample(){
+    void testCountIncreasedDepths(){
         SonarSweeper sonarSweeper = new SonarSweeper();
         int nrOfIncreases = sonarSweeper.calculateNrOfIncreasedDepths("day1/example.txt");
         assertEquals(nrOfIncreases, 7);
