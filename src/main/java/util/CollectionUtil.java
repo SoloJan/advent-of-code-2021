@@ -7,19 +7,41 @@ import java.util.stream.Collectors;
 
 public class CollectionUtil {
 
-    public static <T>  List<List<T>> filter(List<List<T>> chars, final int pos, BiFunction<List, Integer, Character> filterFunction){
-        List<List<T>> filteredChars = chars.stream().filter(c -> c.get(pos) == filterFunction.apply(chars, pos)).collect(Collectors.toList());
-        if (filteredChars.size() == 1 || pos == filteredChars.get(0).size()) {
-            return filteredChars;
-        }
-        return filter(filteredChars, pos + 1, filterFunction);
+    /**
+     * @param lists a list of lists of type T
+     * @param filterFunction
+     * @param <T>
+     * @return The function filters out all inner lists where the element at the first position matches the condition of the filter function,
+     * it then applies the filter function on the second element of the inner list for all inner list which matched the first filter. It then goes on
+     * matching the third element of all inner list which matched the first and second filter and then continuous until either one list is left, or it reached the final element of the inner list.
+      */
+    public static <T>  List<List<T>> filterUntilOneIsLeft(List<List<T>> lists, BiFunction<List, Integer, Character> filterFunction){
+        return filterUntilOneIsLeft(lists, 0, filterFunction);
     }
 
-    public static  <T> List<T>  getBitString(List<List<Character>> chars, BiFunction<List, Integer, T> filterFunction){
-        List<T>  binaryString  = new ArrayList<>();
-        for(int i=0; i<chars.get(0).size(); i++){
-            binaryString.add(filterFunction.apply(chars, i));
+    private static <T>  List<List<T>> filterUntilOneIsLeft(List<List<T>> lists, final int position, BiFunction<List, Integer, Character> filterFunction){
+        List<List<T>> filteredList = lists.stream().filter(c -> c.get(position) == filterFunction.apply(lists, position)).collect(Collectors.toList());
+        if (filteredList.size() == 1 || position == filteredList.get(0).size()) {
+            return filteredList;
         }
-        return binaryString;
+        return filterUntilOneIsLeft(filteredList, position + 1, filterFunction);
+    }
+
+    /**
+     *
+     * @param lists a list of lists of type T
+     * @param filterFunction
+     * @param <T>
+     * @return The function applies the filter function to every element of the inner lists, and returns the results of each of these calculations in a list
+     * for example if the outer list represents footbal teams, and the inner list represents different seasons, and the filter function calculates the maximum goals made per season
+     * than the result will be a list of the maximum goals score for every season.
+     *
+     */
+    public static  <T> List<T> applyToEveryElement(List<List<T>> lists, BiFunction<List, Integer, T> filterFunction){
+        List<T>  result  = new ArrayList<>();
+        for(int i=0; i<lists.get(0).size(); i++){
+            result.add(filterFunction.apply(lists, i));
+        }
+        return result;
     }
 }
