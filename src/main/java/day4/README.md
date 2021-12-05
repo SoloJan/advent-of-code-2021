@@ -8,6 +8,7 @@ Bingo is played on a set of boards each consisting of a 5x5 grid of numbers. Num
 
 The submarine has a bingo subsystem to help passengers (currently, you and the giant squid) pass the time. It automatically generates a random order in which to draw numbers and a random set of boards (your puzzle input). For example:
 
+<pre>
 7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
 22 13 17 11  0  
@@ -27,30 +28,35 @@ The submarine has a bingo subsystem to help passengers (currently, you and the g
 18  8 23 26 20  
 22 11 13  6  5  
 2  0 12  3  7   
+</pre>
 
-After the first five numbers are drawn (7, 4, 9, 5, and 11), there are no winners, but the boards are marked as follows (shown here adjacent to each other to save space):
+After the first five numbers are drawn (7, 4, 9, 5, and 11), there are no winners, but the boards are marked as follows (shown here adjacent to each other to save space, and drawn numbers are shown bold):
 
-22 13 17 11  0         3 15  0  2 22        14 21 17 24  4    
-8  2 23  4 24          9 18 13 17  5        10 16 15  9 19     
-21  9 14 16  7         19  8  7 25 23        18  8 23 26 20     
-6 10  3 18  5          20 11 10 24  4        22 11 13  6  5     
-1 12 20 15 19          14 21 16 12  6         2  0 12  3  7          
+<pre>
+22  13  17  <b>11</b>  0         3   15  0   2   22        14  21  17  24  <b>4</b>    
+8   2   23  <b>4</b>   24        <b>9</b>   18  13  17  <b>5</b>         10  16  15  <b>9</b>   19     
+21  <b>9</b>   14  16  <b>7</b>         19  8   <b>7</b>   25  23        18  8   23  26  20     
+6   10  3   18  <b>5</b>         20  <b>11</b>  10  24  <b>4</b>         22  <b>11</b>  13  6   <b>5</b>        
+1   12  20  15  19        14  21  16  12  6         2   0   12  3   <b>7</b>          
 
 After the next six numbers are drawn (17, 23, 2, 0, 14, and 21), there are still no winners:
 
-22 13 17 11  0         3 15  0  2 22        14 21 17 24  4  
-8  2 23  4 24         9 18 13 17  5        10 16 15  9 19   
-21  9 14 16  7        19  8  7 25 23        18  8 23 26 20  
-6 10  3 18  5        20 11 10 24  4        22 11 13  6  5   
-1 12 20 15 19        14 21 16 12  6         2  0 12  3  7   
+22  13  <b>17</b>  <b>11</b>  <b>0</b>         3   15  <b>0</b>   <b>2</b>   22        <b>14</b>  <b>21</b>  <b>17</b>  24  <b>4</b>    
+8   <b>2</b>   <b>23</b>  <b>4</b>   24        <b>9</b>   18  13  <b>17</b>  <b>5</b>         10  16  15  <b>9</b>   19     
+21  <b>9</b>   <b>14</b>  16  <b>7</b>         19  8   <b>7</b>   25  <b>23</b>        18  8   <b>23</b>  26  20     
+6   10  3   18  <b>5</b>         20  <b>11</b>  10  24  <b>4</b>         22  <b>11</b>  13  6   <b>5</b>        
+1   12  20  15  19        <b>14</b>  <b>21</b>  16  12  6         <b>2</b>   <b>0</b>   12  3   <b>7</b>          
 
 Finally, 24 is drawn:
 
-22 13 17 11  0         3 15  0  2 22        14 21 17 24  4  
-8  2 23  4 24         9 18 13 17  5        10 16 15  9 19   
-21  9 14 16  7        19  8  7 25 23        18  8 23 26 20  
-6 10  3 18  5        20 11 10 24  4        22 11 13  6  5   
-1 12 20 15 19        14 21 16 12  6         2  0 12  3  7   
+
+22  13  <b>17</b>  <b>11</b>  <b>0</b>         3   15  <b>0</b>   <b>2</b>   22        <b>14</b>  <b>21</b>  <b>17</b>  <b>24</b>  <b>4</b>    
+8   <b>2</b>   <b>23</b>  <b>4</b>   24        <b>9</b>   18  13  <b>17</b>  <b>5</b>         10  16  15  <b>9</b>   19     
+21  <b>9</b>   <b>14</b>  16  <b>7</b>         19  8   <b>7</b>   25  <b>23</b>        18  8   <b>23</b>  26  20     
+6   10  3   18  <b>5</b>         20  <b>11</b>  10  <b>24</b>  <b>4</b>         22  <b>11</b>  13  6   <b>5</b>        
+1   12  20  15  19        <b>14</b>  <b>21</b>  16  12  6         <b>2</b>   <b>0</b>   12  3   <b>7</b>    
+
+</pre>
 
 At this point, the third board wins because it has at least one complete row or column of marked numbers (in this case, the entire top row is marked: 14 21 17 24 4).
 
