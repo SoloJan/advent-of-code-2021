@@ -1,28 +1,22 @@
 package day4;
 
+import lombok.Getter;
+
+@Getter
 public class BingoNumber {
 
     private int number;
-    private boolean isDrawn;
+    private boolean drawn;
 
     public BingoNumber(int number){
         this.number = number;
-        this.isDrawn = false;
+        this.drawn = false;
     }
 
     public void hit(int number){
         if(number == this.number){
-            isDrawn = true;
+            drawn = true;
         }
     }
-
-    public int getNumber(){
-        return this.number;
-    }
-
-    public boolean isDrawn(){
-        return isDrawn;
-    }
-
 
 }

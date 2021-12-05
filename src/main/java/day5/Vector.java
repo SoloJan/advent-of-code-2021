@@ -1,8 +1,12 @@
 package day5;
 
+import lombok.AllArgsConstructor;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+@AllArgsConstructor
 public class Vector {
 
     Coordinate start;
@@ -11,12 +15,6 @@ public class Vector {
     public Vector(String vector){
         this(new Coordinate(vector.split(" -> ")[0]), new Coordinate(vector.split(" -> ")[1]));
     }
-
-    public Vector(Coordinate start, Coordinate end){
-        this.start = start;
-        this.end = end;
-    }
-
 
     public List<Coordinate> calculatePointsOnHorizontalAndVerticalLines(){
         List<Coordinate> points = new ArrayList<>();

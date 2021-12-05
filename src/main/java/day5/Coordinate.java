@@ -1,7 +1,14 @@
 package day5;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 import java.util.Objects;
 
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
 public class Coordinate {
 
     private int x;
@@ -11,29 +18,4 @@ public class Coordinate {
         this(Integer.valueOf(coordinate.split(",")[0]),  Integer.valueOf(coordinate.split(",")[1]));
     }
 
-    public Coordinate(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    public int getX(){
-        return x;
-    }
-
-    public int getY(){
-        return y;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Coordinate that = (Coordinate) o;
-        return x == that.x && y == that.y;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(x, y);
-    }
 }
