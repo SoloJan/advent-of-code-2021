@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BingoTest {
 
     @Test
-    void testCalculatePower(){
+    void testBingoScore(){
         Bingo bingo = new Bingo("day4/example.txt");
         int winnerScore = bingo.plau();
         assertEquals(winnerScore, 4512);
