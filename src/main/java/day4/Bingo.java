@@ -22,7 +22,7 @@ public class Bingo {
         }
     }
 
-    public int plau(){
+    public int play(){
         for(Integer number: numberDrawn){
             for(BingoBoard board: boards){
                 Optional<Integer> scoreOfWinner = board.hit(number);

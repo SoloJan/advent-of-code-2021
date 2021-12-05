@@ -1,6 +1,5 @@
 package day4;
 
-import day3.BinaryDiagnoser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +9,7 @@ class BingoTest {
     @Test
     void testBingoScore(){
         Bingo bingo = new Bingo("day4/example.txt");
-        int winnerScore = bingo.plau();
+        int winnerScore = bingo.play();
         assertEquals(winnerScore, 4512);
     }
 
