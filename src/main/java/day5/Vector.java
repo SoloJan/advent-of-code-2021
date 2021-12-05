@@ -18,22 +18,22 @@ public class Vector {
 
     public List<Coordinate> calculatePointsOnHorizontalAndVerticalLines(){
         List<Coordinate> points = new ArrayList<>();
-        if(start.getX() == end.getX()){
-            points.addAll(calculatePointsOnHorizontalLine());
-        }
-        if(start.getY() == end.getY()){
+        if(isVertical()){
             points.addAll(calculatePointsOnVerticalLine());
+        }
+        if(isHorizontal()){
+            points.addAll(calculatePointsOnHorizontalLine());
         }
         return points;
     }
 
     public List<Coordinate> calculatePointsOnLine(){
         List<Coordinate> points = new ArrayList<>();
-        if(start.getX() == end.getX()){
-            points.addAll(calculatePointsOnHorizontalLine());
+        if(isVertical()){
+            points.addAll(calculatePointsOnVerticalLine());
         }
-        else if(start.getY() == end.getY()){
-           points.addAll(calculatePointsOnVerticalLine());
+        else if(isHorizontal()){
+            points.addAll(calculatePointsOnHorizontalLine());
         }
         else{
             points.addAll(calculatePointsOnDiagonalLine());
@@ -43,45 +43,69 @@ public class Vector {
 
     private List<Coordinate> calculatePointsOnDiagonalLine(){
         List<Coordinate> points = new ArrayList<>();
-        int lowestX =  start.getX()  <=  end.getX() ? start.getX() : end.getX();
-
-        int steps = Math.abs(start.getX() - end.getX());
-        if((start.getX() > end.getX() && start.getY() > end.getY()) || (start.getX() < end.getX() && start.getY() < end.getY()))
-        {
-            int lowestY = start.getY() <= end.getY() ? start.getY() : end.getY();
-            for (int i = 0; i <= steps; i++) {
-                points.add(new Coordinate(lowestX + i, lowestY + i));
+        int steps = getHighestX() - getLowestX();
+        for (int i = 0; i <= steps; i++) {
+            if(isDiagonalInSameDirection()) {
+                points.add(new Coordinate(getLowestX() + i, getLowestY() + i));
+            }
+            else{
+                points.add(new Coordinate(getLowestX()+i, getHighestY()-i));
             }
         }
-        else
-        {
-            int highestY =  start.getY()  >=  end.getY() ? start.getY() : end.getY();
-            for(int i=0; i<=steps; i++){
-                points.add(new Coordinate(lowestX+i, highestY-i));
-            }
+        return points;
+    }
+
+    private List<Coordinate> calculatePointsOnHorizontalLine() {
+        List<Coordinate> points = new ArrayList<>();
+        for(int i=getLowestX(); i<=getHighestX(); i++){
+            points.add(new Coordinate(i, start.getY()));
         }
         return points;
     }
 
     private List<Coordinate> calculatePointsOnVerticalLine () {
         List<Coordinate> points = new ArrayList<>();
-        Coordinate startingPoint =  start.getX()  <=  end.getX() ? start : end;
-        Coordinate endPoint =  start.getX()  <=  end.getX() ? end : start;
-        for(int i=startingPoint.getX(); i<=endPoint.getX(); i++){
-            points.add(new Coordinate(i, start.getY()));
+        for(int i=getLowestY(); i<=getHighestY(); i++){
+            points.add(new Coordinate(start.getX(), i));
         }
         return points;
     }
 
-    private List<Coordinate> calculatePointsOnHorizontalLine () {
-        List<Coordinate> points = new ArrayList<>();
-        Coordinate startingPoint =  start.getY()  <=  end.getY() ? start : end;
-        Coordinate endPoint =  start.getY()  <=  end.getY() ? end : start;
-            for(int i=startingPoint.getY(); i<=endPoint.getY(); i++){
-                points.add(new Coordinate(start.getX(), i));
-            }
-        return points;
+    private boolean isHorizontal() {
+        return start.getY() == end.getY();
     }
 
+    private boolean isVertical() {
+        return start.getX() == end.getX();
+    }
+
+    private boolean isDiagonalInSameDirection() {
+        return (start.getX() > end.getX() && start.getY() > end.getY()) || (start.getX() < end.getX() && start.getY() < end.getY());
+    }
+
+    private int getHighest(int x, int x2) {
+        return x >= x2 ? x : x2;
+    }
+
+    private int getHighestY() {
+        return getHighest(start.getY(), end.getY());
+    }
+
+    private int getHighestX(){
+        return getHighest(start.getX(), end.getX());
+    }
+
+    private int getLowestY(){
+        return getLowest(start.getY(), end.getY());
+    }
+
+
+    private int getLowestX(){
+        return getLowest(start.getX(), end.getX());
+    }
+
+    private int getLowest(int x, int x2) {
+        return x <= x2 ? x : x2;
+    }
 
 }
