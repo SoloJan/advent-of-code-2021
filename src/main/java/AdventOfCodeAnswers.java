@@ -1,4 +1,4 @@
-import Day5.HydrothermalVents;
+import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
 import day3.BinaryDiagnoser;
