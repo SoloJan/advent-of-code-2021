@@ -1,6 +1,7 @@
 import day1.SonarSweeper;
 import day2.Navigator;
 import day3.BinaryDiagnoser;
+import day4.Bingo;
 
 public class AdventOfCodeAnswers {
 
@@ -12,6 +13,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 2 exercise 2 is: %d", new Navigator().calculatePositionWithAim("day2/input.txt")));
         System.out.println(String.format("The answer to the day 3 exercise 1 is: %d", new BinaryDiagnoser().getPower("day3/input.txt")));
         System.out.println(String.format("The answer to the day 3 exercise 2 is: %d", new BinaryDiagnoser().getLifeSupport("day3/input.txt")));
+        System.out.println(String.format("The answer to the day 4 exercise 1 is: %d", new Bingo("day4/input.txt").plau()));
+        System.out.println(String.format("The answer to the day 4 exercise 2 is: %d", new Bingo("day4/input.txt").scoreOfLastBoardToWin()));
     }
 
 }
