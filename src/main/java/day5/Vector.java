@@ -17,28 +17,23 @@ public class Vector {
     }
 
     public List<Coordinate> calculatePointsOnHorizontalAndVerticalLines(){
-        List<Coordinate> points = new ArrayList<>();
         if(isVertical()){
-            points.addAll(calculatePointsOnVerticalLine());
+            return calculatePointsOnVerticalLine();
         }
         if(isHorizontal()){
-            points.addAll(calculatePointsOnHorizontalLine());
+            return calculatePointsOnHorizontalLine();
         }
-        return points;
+        return new ArrayList<>();
     }
 
     public List<Coordinate> calculatePointsOnLine(){
-        List<Coordinate> points = new ArrayList<>();
         if(isVertical()){
-            points.addAll(calculatePointsOnVerticalLine());
+            return calculatePointsOnVerticalLine();
         }
-        else if(isHorizontal()){
-            points.addAll(calculatePointsOnHorizontalLine());
+        if(isHorizontal()){
+            return calculatePointsOnHorizontalLine();
         }
-        else{
-            points.addAll(calculatePointsOnDiagonalLine());
-        }
-        return points;
+        return calculatePointsOnDiagonalLine();
     }
 
     private List<Coordinate> calculatePointsOnDiagonalLine(){
