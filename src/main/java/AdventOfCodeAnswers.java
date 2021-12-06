@@ -20,7 +20,7 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 5 exercise 1 is: %d", new HydrothermalVents("day5/input.txt").getNumberOfOverlappingPointsOnHorizontalAndVerticalLines()));
         System.out.println(String.format("The answer to the day 5 exercise 2 is: %d", new HydrothermalVents("day5/input.txt").getNumberOfOverlappingPoints()));
         System.out.println(String.format("The answer to the day 6 exercise 1 is: %d", new LanternFishCalculator().calculateAmountOfFish("day6/input.txt", 80)));
-        System.out.println(String.format("The answer to the day 6 exercise 1 is: %d", new LanternFishCalculator().calculateAmountOfFish("day6/input.txt", 256)));
+        System.out.println(String.format("The answer to the day 6 exercise 2 is: %d", new LanternFishCalculator().calculateAmountOfFish("day6/input.txt", 256)));
     }
 
 }
