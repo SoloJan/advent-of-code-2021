@@ -14,7 +14,16 @@ public class LanternFishCalculator {
 
     HashMap<Integer, Long> offSpring  = new HashMap<>();
 
-    public long countOffSpring(int daysUntilOffspring, int days){
+    public long calculateAmountOfFish(String fileName, int days){
+        List<Integer> fish = Arrays.asList(readFilePerLine(fileName).get(0).split(",")).stream().map(s-> Integer.valueOf(s)).collect(Collectors.toList());
+        long sum = fish.size();
+        for(Integer daysUntilReproduction : fish){
+            sum += countOffSpring(daysUntilReproduction, days);
+        }
+        return sum;
+    }
+
+    private long countOffSpring(int daysUntilOffspring, int days){
         int daysToReproduce = days - daysUntilOffspring;
         if(offSpring.containsKey(daysToReproduce)) {
             return offSpring.get(daysToReproduce);
@@ -27,11 +36,6 @@ public class LanternFishCalculator {
             offSpring.put(daysToReproduce, nrOfOffspring);
             return nrOfOffspring;
         }
-    }
-
-    public long calculateAmountOfFish(String fileName, int days){
-        List<Integer> fish = Arrays.asList(readFilePerLine(fileName).get(0).split(",")).stream().map(s-> Integer.valueOf(s)).collect(Collectors.toList());
-        return fish.size() + fish.stream().map(f -> countOffSpring(f, days)).reduce(Long::sum).orElse(0L);
     }
 
 }
