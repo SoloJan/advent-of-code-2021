@@ -16,6 +16,20 @@ public class Digit {
          segments = toCharacterList(input).stream().map(this::toSegment).collect(Collectors.toSet());
     }
 
+
+    /**
+     * The values 1,7,8,4 can be uniquely determined by the size of their segments
+     * The values 9, 0, and 6 all have 6 digits, so you need the translation map to determine which one you are dealing with, you need to have solved for 1, and 4 before finding these values
+     * The 9 can be recognised because it has all the segments of the four
+     * The 0 can be recognised because it has all the segments of the one, but not all the segments of the four
+     * The 6 can be recognised because it does not share all segments of the one, or the four
+     * The values 3, 2, and 5  all have 5 digits, so you need the translation map to determine which one you are dealing with, you need to have solved for 1, and 6 before finding these values
+     * The 3 can be recognised because it has all the segments of the one
+     * The 2 can be recognised because it has the c element which is the only missing element of the 6
+     * The 5 can be recognised because it does not have the c element which is the only missing element of the 6
+     * @param displayTranslation a map of previous found translations from value to segment
+     * @return the value
+     */
     public Integer getValue(Map<Integer, Set<Segment>> displayTranslation) {
         switch (segments.size()) {
             case 2:
