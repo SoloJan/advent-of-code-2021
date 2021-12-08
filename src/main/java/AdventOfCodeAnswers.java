@@ -4,6 +4,7 @@ import day2.Navigator;
 import day3.BinaryDiagnoser;
 import day4.Bingo;
 import day6.LanternFishCalculator;
+import day7.PositionAligner;
 
 public class AdventOfCodeAnswers {
 
@@ -21,6 +22,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 5 exercise 2 is: %d", new HydrothermalVents("day5/input.txt").getNumberOfOverlappingPoints()));
         System.out.println(String.format("The answer to the day 6 exercise 1 is: %d", new LanternFishCalculator().calculateAmountOfFish("day6/input.txt", 80)));
         System.out.println(String.format("The answer to the day 6 exercise 2 is: %d", new LanternFishCalculator().calculateAmountOfFish("day6/input.txt", 256)));
+        System.out.println(String.format("The answer to the day 7 exercise 1 is: %d", new PositionAligner().findShortestDistanceToCommonPoint("day7/input.txt") ));
+        System.out.println(String.format("The answer to the day 7 exercise 2 is: %d", new PositionAligner().findFuelConsumption("day7/input.txt") ));
     }
 
 }
