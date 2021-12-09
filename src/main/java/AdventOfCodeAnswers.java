@@ -6,6 +6,7 @@ import day4.Bingo;
 import day6.LanternFishCalculator;
 import day7.PositionAligner;
 import day8.SegmentDisplayRepairer;
+import day9.HeatMap;
 
 public class AdventOfCodeAnswers {
 
@@ -27,6 +28,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 7 exercise 2 is: %d", new PositionAligner().findFuelConsumption("day7/input.txt") ));
         System.out.println(String.format("The answer to the day 8 exercise 1 is: %d", new SegmentDisplayRepairer("day8/input.txt").getUniqueDigitsInOutput()));
         System.out.println(String.format("The answer to the day 8 exercise 2 is: %d", new SegmentDisplayRepairer("day8/input.txt").getSumOfOutputs()));
+        System.out.println(String.format("The answer to the day 9 exercise 1 is: %d", new HeatMap("day9/input.txt").findSumOfRiskLevels()));
+        System.out.println(String.format("The answer to the day 9 exercise 2 is: %d", new HeatMap("day9/input.txt").findProductOfThreeBiggestBasinSizes()));
     }
 
 }
