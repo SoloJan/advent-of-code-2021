@@ -1,4 +1,5 @@
 import day10.SyntaxChecker;
+import day11.FlashCounter;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -33,6 +34,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 9 exercise 2 is: %d", new HeatMap("day9/input.txt").findProductOfThreeBiggestBasinSizes()));
         System.out.println(String.format("The answer to the day 10 exercise 1 is: %d",new SyntaxChecker().getTotalSyntaxErrorScore("day10/input.txt")));
         System.out.println(String.format("The answer to the day 10 exercise 2 is: %d",new SyntaxChecker().getMedianAutoCompleteScore("day10/input.txt")));
+        System.out.println(String.format("The answer to the day 11 exercise 1 is: %d", new FlashCounter("day11/input.txt").countFlashes(100)));
+        System.out.println(String.format("The answer to the day 11 exercise 2 is: %d", new FlashCounter("day11/input.txt").flashTogether()));
     }
 
 }

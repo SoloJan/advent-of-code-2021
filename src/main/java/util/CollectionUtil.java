@@ -2,6 +2,7 @@ package util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -44,4 +45,41 @@ public class CollectionUtil {
         }
         return result;
     }
+
+    public static <T> List<T> getAllNeighbours(List<List<T>> grit, int row, int column){
+       List<T> neighbours =  getDirectNeighbours(grit, row, column);
+       neighbours.addAll(getDiagonalNeighbours(grit, row, column));
+       return neighbours;
+    }
+
+    public static <T> List<T> getDirectNeighbours(List<List<T>> grit, int row, int column){
+        List<T> directNeighbours = new ArrayList<>();
+        getFromGrid(grit, row-1, column).ifPresent(neighbour ->  directNeighbours.add(neighbour));
+        getFromGrid(grit, row+1, column).ifPresent(neighbour ->  directNeighbours.add(neighbour));
+        getFromGrid(grit, row, column+1).ifPresent(neighbour ->  directNeighbours.add(neighbour));
+        getFromGrid(grit, row, column-1).ifPresent(neighbour ->  directNeighbours.add(neighbour));
+        return  directNeighbours;
+    }
+
+    private static <T> List<T> getDiagonalNeighbours(List<List<T>> grit, int row, int column){
+        List<T> diagonalNeighbours = new ArrayList<>();
+        getFromGrid(grit, row-1, column-1).ifPresent(neighbour ->  diagonalNeighbours.add(neighbour));
+        getFromGrid(grit, row-1, column+1).ifPresent(neighbour ->  diagonalNeighbours.add(neighbour));
+        getFromGrid(grit, row+1, column+1).ifPresent(neighbour ->  diagonalNeighbours.add(neighbour));
+        getFromGrid(grit, row+1, column-1).ifPresent(neighbour ->  diagonalNeighbours.add(neighbour));
+        return  diagonalNeighbours;
+    }
+
+    private static <T> Optional<T> getFromGrid(List<List<T>> grit, int row, int column){
+        try{
+            return Optional.of(grit.get(row).get(column));
+        }
+        catch (IndexOutOfBoundsException e){
+            return Optional.empty();
+        }
+    }
+
+
+
+
 }
