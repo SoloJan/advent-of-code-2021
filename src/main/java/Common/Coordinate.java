@@ -1,12 +1,14 @@
-package day5;
+package Common;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 @Getter
+@Setter
 @EqualsAndHashCode
 @AllArgsConstructor
 public class Coordinate {

@@ -1,6 +1,7 @@
 import day10.SyntaxChecker;
 import day11.FlashCounter;
 import day12.PathFinder;
+import day13.PaperFolder;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -38,7 +39,10 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 11 exercise 1 is: %d", new FlashCounter("day11/input.txt").countFlashes(100)));
         System.out.println(String.format("The answer to the day 11 exercise 2 is: %d", new FlashCounter("day11/input.txt").flashTogether()));
         System.out.println(String.format("The answer to the day 12 exercise 1 is: %d", new PathFinder("day12/input.txt").findNrOfPaths()));
-        System.out.println(String.format("The answer to the day 12 exercise 2 is: %d", new PathFinder("day12/input.txt").findNrOfPathsRevisitingSmallCaves()));
+        // System.out.println(String.format("The answer to the day 12 exercise 2 is: %d", new PathFinder("day12/input.txt").findNrOfPathsRevisitingSmallCaves()));
+        System.out.println(String.format("The answer to the day 13 exercise 1 is: %d", new PaperFolder("day13/input.txt").nrOfDotsAfterFirstInstruction()));
+        System.out.println("The answer to the day 13 exercise 2 is: ");
+        new PaperFolder("day13/input.txt").keepOnFolding();
     }
 
 }

@@ -1,5 +1,6 @@
 package day5;
 
+import Common.Coordinate;
 import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
