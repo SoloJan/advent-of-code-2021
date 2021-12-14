@@ -2,6 +2,7 @@ import day10.SyntaxChecker;
 import day11.FlashCounter;
 import day12.PathFinder;
 import day13.PaperFolder;
+import day14.Polymerizator;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -43,6 +44,9 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 13 exercise 1 is: %d", new PaperFolder("day13/input.txt").nrOfDotsAfterFirstInstruction()));
         System.out.println("The answer to the day 13 exercise 2 is: ");
         new PaperFolder("day13/input.txt").keepOnFolding();
+      //  System.out.println(String.format("The answer to the day 13 exercise 1 is: %d", new Polymerizator("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(10)));
+        System.out.println(String.format("The answer to the day 13 exercise 1 is: %d", new Polymerizator("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(40)));
+
     }
 
 }
