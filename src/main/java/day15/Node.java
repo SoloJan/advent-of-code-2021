@@ -1,6 +1,5 @@
 package day15;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
@@ -15,26 +14,26 @@ public class Node {
     private int column;
     private int riskLevel;
     private boolean visited;
-    private Optional<Long> shortestDistanceToStart;
+    private Optional<Long> shortestDistanceToEnd;
 
     public Node(int row, int column, int riskLevel){
         this.row = row;
         this.column = column;
         this.riskLevel = riskLevel;
-        shortestDistanceToStart = Optional.empty();
+        shortestDistanceToEnd = Optional.empty();
         visited = false;
     }
 
-    public void setShortestDistanceToStart(Node node){
-        setShortestDistanceToStart(node.getShortestDistanceToStart().get() + riskLevel);
+    public void setShortestDistanceToEnd(Node node){
+        setShortestDistanceToEnd(node.getShortestDistanceToEnd().get() + riskLevel);
     }
 
-    public void setShortestDistanceToStart(long distanceToStart){
-        if(shortestDistanceToStart.isPresent()){
-            this.shortestDistanceToStart = Optional.of(getLowest(distanceToStart, shortestDistanceToStart.get()));
+    public void setShortestDistanceToEnd(long distanceToStart){
+        if(shortestDistanceToEnd.isPresent()){
+            this.shortestDistanceToEnd = Optional.of(getLowest(distanceToStart, shortestDistanceToEnd.get()));
         }
         else{
-            this.shortestDistanceToStart = Optional.of(distanceToStart);
+            this.shortestDistanceToEnd = Optional.of(distanceToStart);
         }
     }
 
