@@ -4,6 +4,9 @@ import day12.PathFinder;
 import day13.PaperFolder;
 import day14.PolymereTemplate;
 import day15.ShortestPathFinder;
+import day16.Packet;
+import day16.PacketDecoder;
+import day17.TrajectoryCalculator;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -13,6 +16,8 @@ import day6.LanternFishCalculator;
 import day7.PositionAligner;
 import day8.SegmentDisplayRepairer;
 import day9.HeatMap;
+
+import static util.FileUtil.readFilePerLine;
 
 public class AdventOfCodeAnswers {
 
@@ -48,7 +53,11 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(10)));
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(40)));
         System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPath2()));
-    //    System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathInBigMap()));
+        // System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathInBigMap()));
+        System.out.println(String.format("The answer to the day 16 exercise 1 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getSumOfVersionNumbers()));
+        System.out.println(String.format("The answer to the day 16 exercise 2 is: %d",new Packet(readFilePerLine("day16/input.txt").get(0)).getValue().longValue()));
+        System.out.println(String.format("The answer to the day 17 exercise 1 is: %d", new TrajectoryCalculator().findMaxHeight(85, 145, -163, -108)));
+        System.out.println(String.format("The answer to the day 17 exercise 2 is: %d", new TrajectoryCalculator().findCountOfAllowedVelocities(85, 145, -163, -108)));
     }
 
 }
