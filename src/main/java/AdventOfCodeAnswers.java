@@ -7,6 +7,7 @@ import day15.ShortestPathFinder;
 import day16.Packet;
 import day16.PacketDecoder;
 import day17.TrajectoryCalculator;
+import day18.SnailfishNumberCalculator;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -58,6 +59,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 16 exercise 2 is: %d",new Packet(readFilePerLine("day16/input.txt").get(0)).getValue().longValue()));
         System.out.println(String.format("The answer to the day 17 exercise 1 is: %d", new TrajectoryCalculator().findMaxHeight(85, 145, -163, -108)));
         System.out.println(String.format("The answer to the day 17 exercise 2 is: %d", new TrajectoryCalculator().findCountOfAllowedVelocities(85, 145, -163, -108)));
+        System.out.println(String.format("The answer to the day 18 exercise 1 is: %d", new SnailfishNumberCalculator().magnitudeOfFile("day18/input.txt")));
+        System.out.println(String.format("The answer to the day 18 exercise 2 is: %d", new SnailfishNumberCalculator().maxMagnitude("day18/input.txt")));
     }
 
 }
