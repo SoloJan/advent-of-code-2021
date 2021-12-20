@@ -59,7 +59,7 @@ public class ShortestPathFinder {
 
 
 
-    public long findShortestPath2(){
+    public long findShortestPath(){
         int squareSize = nodes.size();
         Node lastNode = nodes.get(squareSize-1).get(squareSize-1);
         lastNode.setShortestDistanceToEnd(lastNode.getRiskLevel());
@@ -93,48 +93,28 @@ public class ShortestPathFinder {
         return x <= x2 ? x : x2;
     }
 
+
     public List<List<Node>> getBigMap(){
-
-
-
-        List<Node> firstRow = nodes.stream().flatMap(Collection::stream).map(n -> getNodeRow(n, nodes.size())).flatMap(Collection::stream).collect(Collectors.toList());
-        List<Node> secondRow = firstRow.stream().map(n -> nodeMapToNewRow(n, nodes.size())).collect(Collectors.toList());
-        List<Node> thirdRow = secondRow.stream().map(n -> nodeMapToNewRow(n, nodes.size())).collect(Collectors.toList());
-        List<Node> fourthRow = thirdRow.stream().map(n -> nodeMapToNewRow(n, nodes.size())).collect(Collectors.toList());
-        List<Node> vifthRow = fourthRow.stream().map(n -> nodeMapToNewRow(n, nodes.size())).collect(Collectors.toList());
-
-        List<Node> allTTiles = new ArrayList<>();
-
-        allTTiles.addAll(firstRow);
-        allTTiles.addAll(secondRow);
-        allTTiles.addAll(thirdRow);
-        allTTiles.addAll(fourthRow);
-        allTTiles.addAll(vifthRow);
         List<List<Node>> bigMap = new ArrayList<>();
-        for(int row = 0; row< 5*nodes.size(); row++){
-            List<Node> nodeRow = new ArrayList<>();
-            for(int column = 0; column< 5*nodes.size(); column++){
-                int finalRow = row;
-                int finalColumn = column;
-                nodeRow.add(allTTiles.stream().filter(n -> n.getRow() == finalRow && n.getColumn() == finalColumn).findFirst().get());
+        int originalSize = nodes.size();
+        for(int row = 0; row < originalSize ; row++){
+            List<Node> nodeRow =  nodes.get(row);
+            for(int column = originalSize; column < 5 * originalSize; column++){
+                Node node = new Node(row, column, newRiskLevel(nodeRow.get(column-originalSize)));
+                nodeRow.add(node);
+            }
+            bigMap.add(nodeRow);
+        }
+        for(int row = originalSize; row < 5 * originalSize;  row++){
+            List<Node> nodeRow =  new ArrayList<>();
+            for(int column = 0; column < 5 * originalSize; column++){
+                nodeRow.add(new Node(row, column, newRiskLevel(bigMap.get(row-originalSize).get(column))));
             }
             bigMap.add(nodeRow);
         }
         return bigMap;
     }
 
-
-
-
-    private List<Node> getNodeRow(Node node, int size){
-        List<Node> nodeRow = new ArrayList<>();
-        nodeRow.add(node);
-        nodeRow.add(mapToNodeInRow(node, size));
-        nodeRow.add(mapToNodeInRow(nodeRow.get(1), size));
-        nodeRow.add(mapToNodeInRow(nodeRow.get(2), size));
-        nodeRow.add(mapToNodeInRow(nodeRow.get(3), size));
-        return nodeRow;
-    }
 
     private Node mapToNodeInRow(Node node, int size){
         return new Node(node.getRow(),  node.getColumn() + size, newRiskLevel(node));
