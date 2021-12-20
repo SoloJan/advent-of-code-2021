@@ -70,7 +70,7 @@ public class CollectionUtil {
         return  diagonalNeighbours;
     }
 
-    private static <T> Optional<T> getFromGrid(List<List<T>> grit, int row, int column){
+    public static <T> Optional<T> getFromGrid(List<List<T>> grit, int row, int column){
         try{
             return Optional.of(grit.get(row).get(column));
         }

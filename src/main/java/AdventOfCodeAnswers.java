@@ -9,6 +9,7 @@ import day16.PacketDecoder;
 import day17.TrajectoryCalculator;
 import day18.SnailfishNumberCalculator;
 import day19.BeaconScannerMap;
+import day20.ImageEnhancer;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -64,6 +65,11 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 18 exercise 2 is: %d", new SnailfishNumberCalculator().maxMagnitude("day18/input.txt")));
         System.out.println(String.format("The answer to the day 19 exercise 1 is: %d", new BeaconScannerMap("day19/input.txt").getCountOfUniqueBeacons()));
         System.out.println(String.format("The answer to the day 19 exercise 2 is: %d", new BeaconScannerMap("day19/input.txt").getBiggestManhattanDistance()));
+        System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfterTwoEnhancements()));
+        System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfter50Enhancements()));
+
+
+
     }
 
 }
