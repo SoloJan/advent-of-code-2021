@@ -40,12 +40,12 @@ public class PolymereTemplate {
 
     public void updatePolymerTemplate(int steps){
         for(int i=1; i<=steps; i++){
-            step();
+            insertPolymerPair();
         }
     }
 
 
-    private void step(){
+    private void insertPolymerPair(){
         Map<String, Long> newPairCount = getInitialPairCount();
         for(PairInsertionRule rule: rules){
             String codeCombination = rule.getCodeCombination();

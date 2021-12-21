@@ -131,10 +131,4 @@ public class Packet {
         return value;
     }
 
-    public int getVersion(){
-        return version;
-    }
-
-
-
 }

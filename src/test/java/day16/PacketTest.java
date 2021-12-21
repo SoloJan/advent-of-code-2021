@@ -50,7 +50,6 @@ class PacketTest {
 
     @Test
     void getValue(){
-        PacketDecoder decoder = new PacketDecoder();
         assertEquals(3l, new Packet("C200B40A82").getValue().longValue());
         assertEquals(54l, new Packet("04005AC33890").getValue().longValue());
         assertEquals(7l, new Packet("880086C3E88112").getValue().longValue());

@@ -15,9 +15,6 @@ public class SnailfishNumber {
     Optional<SnailfishNumber> ySnailFish = Optional.empty();
     Optional<SnailfishNumber>  parent = Optional.empty();
     String snailFishNumberString;
-    int depth = 0;
-
-
 
     public SnailfishNumber(String snailFishNumberString){
         this.snailFishNumberString = snailFishNumberString;
@@ -38,14 +35,14 @@ public class SnailfishNumber {
 
 
     public long magnitude(){
-        long leftValue = 0;
+        long leftValue;
         if(xNumber.isPresent()){
             leftValue = xNumber.get();
         }
         else{
             leftValue = xSnailFish.get().magnitude();
         }
-        long rightValue = 0;
+        long rightValue;
         if(yNumber.isPresent()){
             rightValue = yNumber.get();
         }
@@ -63,18 +60,18 @@ public class SnailfishNumber {
         return indexOfClosingBracket(snailFishNumberString);
     }
 
-    public Integer indexOfClosingBracket(String string) {
-        List<Character> toBeCLosed = new LinkedList<>();
+    private Integer indexOfClosingBracket(String string) {
+        List<Character> toBeClosed = new LinkedList<>();
         int index = 1;
-        toBeCLosed.add('[');
-        while (!toBeCLosed.isEmpty()) {
+        toBeClosed.add('[');
+        while (!toBeClosed.isEmpty()) {
             index++;
             if (string.charAt(index) == '[') {
-                toBeCLosed.add(string.charAt(index));
+                toBeClosed.add(string.charAt(index));
             }
             if (string.charAt(index) == ']') {
-                toBeCLosed.remove(toBeCLosed.size() - 1);
-                if (toBeCLosed.isEmpty()) {
+                toBeClosed.remove(toBeClosed.size() - 1);
+                if (toBeClosed.isEmpty()) {
                     return index + 2;
                 }
             }

@@ -32,14 +32,10 @@ public class SnailfishNumberCalculator {
     }
 
     public String add(String firstNumber, String secondNumber){
-        //System.out.println("Firstnumber : " +firstNumber);
-     //   System.out.println("Secondnumber : " +secondNumber);
         String  snailFishNumber = new StringBuilder("[").append(firstNumber).append(",").append(secondNumber).append("]").toString();
         while(canReduce(snailFishNumber)){
-        //    System.out.println("intermediate : " + snailFishNumber);
             snailFishNumber = reduce(snailFishNumber);
         }
-       // System.out.println("Result: " +snailFishNumber);
         return  snailFishNumber;
     }
 
@@ -47,7 +43,6 @@ public class SnailfishNumberCalculator {
         List<String>  numbers = readFilePerLine(fileName);
         String snailFishNumber = numbers.get(0);
         for(int i =1; i<numbers.size(); i++){
-       //     System.out.println(snailFishNumber);
             snailFishNumber = add(snailFishNumber, numbers.get(i));
         }
         return snailFishNumber;
@@ -165,16 +160,16 @@ public class SnailfishNumberCalculator {
 
 
     public Optional<Integer> indexOfSnailNumberToExplode(String string) {
-        List<Character> toBeCLosed = new LinkedList<>();
+        List<Character> toBeClosed = new LinkedList<>();
         for(int index = 0; index< string.length(); index++){
             if (string.charAt(index) == '[') {
-                toBeCLosed.add(string.charAt(index));
-                if (toBeCLosed.size() == 5) {
+                toBeClosed.add(string.charAt(index));
+                if (toBeClosed.size() == 5) {
                     return Optional.of(index);
                 }
             }
             if (string.charAt(index) == ']') {
-                toBeCLosed.remove(toBeCLosed.size() - 1);
+                toBeClosed.remove(toBeClosed.size() - 1);
 
             }
         }
