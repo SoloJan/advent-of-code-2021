@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static util.CollectionUtil.getDirectNeighbours;
+import static util.CollectionUtil.getFromGrid;
 import static util.FileUtil.readFilePerLine;
 
 public class ShortestPathFinder {
@@ -13,6 +14,7 @@ public class ShortestPathFinder {
 
     private List<List<Node>> nodes = new ArrayList<>();
     private List<List<Node>>  bigMap = new ArrayList<>();
+    private int countOfVisitedNodes = 0;
 
     public ShortestPathFinder(String fileName){
         List<List<Integer>>  riskLevels = readFilePerLine(fileName).stream().map(StringUtil::toIntegerList).collect(Collectors.toList());
@@ -48,14 +50,58 @@ public class ShortestPathFinder {
                 else {
                     columnNode.setShortestDistanceToEnd(columnNode.getRiskLevel() + getLowest(bigMap.get(j).get(i+1).getShortestDistanceToEnd().get(), bigMap.get(j+1).get(i).getShortestDistanceToEnd().get()));
                 }
-
-
             }
         }
         return bigMap.get(0).get(0).getShortestDistanceToEnd().get() - bigMap.get(0).get(0).getRiskLevel();
     }
 
 
+
+    public long findShortestPathDijkstra(){
+        bigMap = getBigMap();
+        Node startNode = bigMap.get(0).get(0);
+        startNode.setShortestDistanceToStart(0l);
+        startNode.markVisited();
+        countOfVisitedNodes++;
+
+
+        List<Node> neighbouringNodes = getNeighbours(startNode);
+        neighbouringNodes.forEach(node -> node.setShortestDistanceToStart(startNode));
+        neighbouringNodes.sort(Comparator.comparing(n -> n.getShortestDistanceToStart().get()));
+        neighbouringNodes.get(0).markVisited();
+        countOfVisitedNodes++;
+
+        List<Node> visitedNodes = new ArrayList<>();
+        visitedNodes.add(startNode);
+        visitedNodes.add(neighbouringNodes.get(0));
+
+
+
+        while(countOfVisitedNodes < (bigMap.size() * bigMap.size())) {
+            Node minNode = null;
+            for (Node node :  visitedNodes) {
+                List<Node> neighbours = getNeighbours(node);
+                for (Node neighbourNode : neighbours) {
+                    if(neighbourNode.isVisited()){
+                        continue;
+                    }
+                    neighbourNode.setShortestDistanceToStart(node);
+                    if(minNode == null ||  minNode.getShortestDistanceToStart().get() >= neighbourNode.getShortestDistanceToStart().get()){
+                        minNode = neighbourNode;
+                    }
+                }
+            }
+          //  Node nodeToUpdate =  nodes.get(minNode.getRow()).get(minNode.getColumn());
+
+                minNode.markVisited();
+                visitedNodes.add(minNode);
+                countOfVisitedNodes++;
+
+        }
+
+        return bigMap.get(bigMap.size()-1).get(bigMap.get(0).size()-1).getShortestDistanceToStart().get();
+
+    }
 
 
 
@@ -132,7 +178,7 @@ public class ShortestPathFinder {
     }
 
     private List<Node> getNeighbours(Node node){
-        return getDirectNeighbours(nodes, node.getRow(),node.getColumn()).stream().filter(n -> !n.isVisited()).collect(Collectors.toList());
+        return getDirectNeighbours(bigMap, node.getRow(),node.getColumn()).stream().filter(n -> !n.isVisited()).collect(Collectors.toList());
     }
 
 

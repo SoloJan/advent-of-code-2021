@@ -48,14 +48,14 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 11 exercise 1 is: %d", new FlashCounter("day11/input.txt").countFlashes(100)));
         System.out.println(String.format("The answer to the day 11 exercise 2 is: %d", new FlashCounter("day11/input.txt").flashTogether()));
         System.out.println(String.format("The answer to the day 12 exercise 1 is: %d", new PathFinder("day12/input.txt").findNrOfPaths()));
-        // System.out.println(String.format("The answer to the day 12 exercise 2 is: %d", new PathFinder("day12/input.txt").findNrOfPathsRevisitingSmallCaves()));
+      //  System.out.println(String.format("The answer to the day 12 exercise 2 is: %d", new PathFinder("day12/input.txt").findNrOfPathsRevisitingSmallCaves()));
         System.out.println(String.format("The answer to the day 13 exercise 1 is: %d", new PaperFolder("day13/input.txt").nrOfDotsAfterFirstInstruction()));
         System.out.println("The answer to the day 13 exercise 2 is: ");
         new PaperFolder("day13/input.txt").keepOnFolding();
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(10)));
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(40)));
         System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPath()));
-        System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathInBigMap()));
+       // System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstra()));
         System.out.println(String.format("The answer to the day 16 exercise 1 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getSumOfVersionNumbers()));
         System.out.println(String.format("The answer to the day 16 exercise 2 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getValue().longValue()));
         System.out.println(String.format("The answer to the day 17 exercise 1 is: %d", new TrajectoryCalculator().findMaxHeight(85, 145, -163, -108)));
@@ -66,9 +66,6 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 19 exercise 2 is: %d", new BeaconScannerMap("day19/input.txt").getBiggestManhattanDistance()));
         System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfterTwoEnhancements()));
         System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfter50Enhancements()));
-
-
-
     }
 
 }

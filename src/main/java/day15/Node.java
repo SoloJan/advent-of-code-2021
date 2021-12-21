@@ -15,17 +15,28 @@ public class Node {
     private int riskLevel;
     private boolean visited;
     private Optional<Long> shortestDistanceToEnd;
+    private Optional<Long> shortestDistanceToStart;
 
     public Node(int row, int column, int riskLevel){
         this.row = row;
         this.column = column;
         this.riskLevel = riskLevel;
         shortestDistanceToEnd = Optional.empty();
+        shortestDistanceToStart = Optional.empty();
         visited = false;
     }
 
-    public void setShortestDistanceToEnd(Node node){
-        setShortestDistanceToEnd(node.getShortestDistanceToEnd().get() + riskLevel);
+    public void setShortestDistanceToStart(Node node){
+        setShortestDistanceToStart(node.getShortestDistanceToStart().get() + riskLevel);
+    }
+
+    public void setShortestDistanceToStart(long distanceToStart){
+        if(shortestDistanceToStart.isPresent()){
+            this.shortestDistanceToStart = Optional.of(getLowest(distanceToStart, shortestDistanceToStart.get()));
+        }
+        else{
+            this.shortestDistanceToStart = Optional.of(distanceToStart);
+        }
     }
 
     public void setShortestDistanceToEnd(long distanceToStart){
