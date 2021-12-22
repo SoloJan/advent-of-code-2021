@@ -11,6 +11,7 @@ import day19.BeaconScannerMap;
 import day20.ImageEnhancer;
 import day21.DeterministicDice;
 import day21.DiracDice;
+import day22.ReactorRebooter;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
 import day2.Navigator;
@@ -70,6 +71,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfter50Enhancements()));
         System.out.println(String.format("The answer to the day 21 exercise 1 is: %d", new DeterministicDice().play(5,6)));
         System.out.println(String.format("The answer to the day 21 exercise 1 is: %d", new DiracDice().play(5,6)));
+        System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").initialReboot()));
+        System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").totalReboot()));
     }
 
 }

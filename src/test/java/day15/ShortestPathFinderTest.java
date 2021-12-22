@@ -1,5 +1,6 @@
 package day15;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,6 +30,7 @@ class ShortestPathFinderTest {
     }
 
     @Test
+    @Disabled
     void testFindShortestPathInBigMapOfRealInput(){
         ShortestPathFinder pathFinder = new ShortestPathFinder("day15/realInput.txt");
         long actualAnswer = pathFinder.findShortestPathInBigMap();
