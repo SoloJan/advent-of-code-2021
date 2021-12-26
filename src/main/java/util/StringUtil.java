@@ -9,6 +9,11 @@ public class StringUtil {
         return toCharacterList(string).stream().map(c -> Character.getNumericValue(c)).collect(Collectors.toList());
     }
 
+
+    public static List<Integer> toLongList(String string){
+        return toCharacterList(string).stream().map(c -> Character.getNumericValue(c)).collect(Collectors.toList());
+    }
+
     public static List<Character> toCharacterList(String string){
         return string.chars().mapToObj(e -> (char)e).collect(Collectors.toList());
     }
