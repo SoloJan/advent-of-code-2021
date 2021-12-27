@@ -60,7 +60,7 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(10)));
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(40)));
         System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstra()));
-      //  System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstraInBigMap()));
+        //System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstraInBigMap()));
         System.out.println(String.format("The answer to the day 16 exercise 1 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getSumOfVersionNumbers()));
         System.out.println(String.format("The answer to the day 16 exercise 2 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getValue().longValue()));
         System.out.println(String.format("The answer to the day 17 exercise 1 is: %d", new TrajectoryCalculator().findMaxHeight(85, 145, -163, -108)));
@@ -70,14 +70,17 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 19 exercise 1 is: %d", new BeaconScannerMap("day19/input.txt").getCountOfUniqueBeacons()));
         System.out.println(String.format("The answer to the day 19 exercise 2 is: %d", new BeaconScannerMap("day19/input.txt").getBiggestManhattanDistance()));
         System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfterTwoEnhancements()));
-        System.out.println(String.format("The answer to the day 20 exercise 1 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfter50Enhancements()));
+        System.out.println(String.format("The answer to the day 20 exercise 2 is: %d", new ImageEnhancer("day20/input.txt").countOfLightPixelsAfter50Enhancements()));
         System.out.println(String.format("The answer to the day 21 exercise 1 is: %d", new DeterministicDice().play(5,6)));
-        System.out.println(String.format("The answer to the day 21 exercise 1 is: %d", new DiracDice().play(5,6)));
+        System.out.println(String.format("The answer to the day 21 exercise 2 is: %d", new DiracDice().play(5,6)));
         System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").initialReboot()));
-        System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").totalReboot()));
+        System.out.println(String.format("The answer to the day 22 exercise 2 is: %d", new ReactorRebooter("day22/input.txt").totalReboot()));
         System.out.println(String.format("The answer to the day 23 exercise 1 is: %d", new AmphipodOrganizer().puzzle1()));
-        System.out.println(String.format("The answer to the day 23 exercise 1 is: %d", new AmphipodOrganizer().puzzle2()));
+        System.out.println(String.format("The answer to the day 23 exercise 2 is: %d", new AmphipodOrganizer().puzzle2()));
+        System.out.println("The answer to the day 24 exercise 1 is: 99911993949684 which was calculated using pen and paper");
+        System.out.println("The answer to the day 24 exercise 2 is: 62911941716111 which was calculated using pen and paper");
         System.out.println(String.format("The answer to the day 25 exercise 1 is: %d", new CucumberOrganizer("day25/input.txt").getRoundsToStabalize()));
+        System.out.println("Merry Christmas!!! All puzzles are solved ");
     }
 
 }

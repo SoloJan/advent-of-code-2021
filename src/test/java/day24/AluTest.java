@@ -45,7 +45,7 @@ class AluTest {
     }
 
     @Test
-    void puzlleAnswer(){
+    void puzzle1Answer(){
         Alu alu = new Alu("day24/realInstructions.txt");
         Map<String, Long> result  = alu.followInstructions("99911993949684");
         assertEquals(0l, result.get("z"));
@@ -53,12 +53,11 @@ class AluTest {
 
 
     @Test
-    void puzlle2Answer(){
+    void puzzle2Answer(){
         Alu alu = new Alu("day24/realInstructions.txt");
         Map<String, Long> result  = alu.followInstructions("62911941716111");
         assertEquals(0l, result.get("z"));
     }
-
 
     @Test
     void partInstructions(){
@@ -71,15 +70,5 @@ class AluTest {
         Map<String, Long> result  = alu.followInstructions( "3999999");
         assertEquals(0l, result.get("z"));
     }
-
-
-
-    @Test
-    void findLargestModelNumber(){
-        Alu alu = new Alu("day24/realInstructions.txt");
-        long result = alu.findLargestModelNumber();
-        assertEquals(99999999999999l, result);
-    }
-
 
 }

@@ -12,27 +12,9 @@ public class Alu {
 
     List<Instruction> instructions;
 
-
-
     public Alu(String fileName){
         instructions = readFilePerLine(fileName).stream().map(Instruction::new).collect(Collectors.toList());
     }
-
-
-    public long findLargestModelNumber(){
-        for(long i = 422432988l; i>=111111111l; i--){
-            String modelNumber = String.valueOf(i).concat("99999");
-            if(modelNumber.contains("0")){
-                continue;
-            }
-            long zScore = followInstructions(modelNumber).get("z");
-            if(zScore == 0l){
-                return i;
-            }
-        }
-        return 0l;
-    }
-
 
     public Map<String, Long> followInstructions(Map<String, Long> variables,  String modelNumber){
         List<Integer>  inputs =  toIntegerList(modelNumber);
@@ -40,22 +22,17 @@ public class Alu {
         for(Instruction instruction: instructions){
             if(instruction.operation.equals("inp")){
                 variables.put(instruction.getVar1(), (long) inputs.get(i));
-                    System.out.println("z   = " +  variables.get("z"));
-                    System.out.println(instruction.getVar1() + (i+1) + " = " +  variables.get(instruction.getVar1()));
-
                 i++;
             }
             else {
                 try {
                     variables = followInstruction(variables, instruction);
-                    System.out.println(instruction.getVar1() + " = " +  variables.get(instruction.getVar1()));
                 }
                 catch (Exception e){
                     variables.put("z", Long.MAX_VALUE);
                 }
             }
         }
-        System.out.println("z   = " +  variables.get("z"));
         return variables;
     }
 
@@ -90,7 +67,6 @@ public class Alu {
                     throw new AluException();
                  }
                 variables.put(instruction.getVar1(), variables.get(instruction.getVar1()) % getValue(variables, instruction.getVar2()));
-
                 return variables;
             case "eql" :
                 long result  = variables.get(instruction.getVar1()) ==  getValue(variables, instruction.getVar2()) ? 1 : 0;
