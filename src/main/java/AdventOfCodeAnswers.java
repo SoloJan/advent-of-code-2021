@@ -60,7 +60,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(10)));
         System.out.println(String.format("The answer to the day 14 exercise 1 is: %d", new PolymereTemplate("day14/input.txt").mostCommonCharacterMinusLeastCommonCharacterAfterSteps(40)));
         System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstra()));
-        //System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstraInBigMap()));
+        System.out.println("The next problem takes 15 seconds to finish so be patient");
+        System.out.println(String.format("The answer to the day 15 exercise 1 is: %d", new ShortestPathFinder("day15/input.txt").findShortestPathDijkstraInBigMap()));
         System.out.println(String.format("The answer to the day 16 exercise 1 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getSumOfVersionNumbers()));
         System.out.println(String.format("The answer to the day 16 exercise 2 is: %d", new Packet(readFilePerLine("day16/input.txt").get(0)).getValue().longValue()));
         System.out.println(String.format("The answer to the day 17 exercise 1 is: %d", new TrajectoryCalculator().findMaxHeight(85, 145, -163, -108)));

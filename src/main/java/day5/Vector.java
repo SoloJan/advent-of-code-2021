@@ -79,29 +79,18 @@ public class Vector {
         return (start.getX() > end.getX() && start.getY() > end.getY()) || (start.getX() < end.getX() && start.getY() < end.getY());
     }
 
-    private int getHighest(int x, int x2) {
-        return x >= x2 ? x : x2;
-    }
-
     private int getHighestY() {
-        return getHighest(start.getY(), end.getY());
+        return Math.min(start.getY(), end.getY());
     }
 
     private int getHighestX(){
-        return getHighest(start.getX(), end.getX());
+        return Math.max(start.getX(), end.getX());
     }
 
-    private int getLowestY(){
-        return getLowest(start.getY(), end.getY());
-    }
-
+    private int getLowestY(){return Math.min(start.getY(), end.getY());}
 
     private int getLowestX(){
-        return getLowest(start.getX(), end.getX());
-    }
-
-    private int getLowest(int x, int x2) {
-        return x <= x2 ? x : x2;
+        return Math.min(start.getX(), end.getX());
     }
 
 }

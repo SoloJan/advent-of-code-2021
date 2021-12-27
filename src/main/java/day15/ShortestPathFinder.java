@@ -23,19 +23,44 @@ public class ShortestPathFinder {
 
     }
 
+    /**
+     *  This alrogrithm assumes that there is no back tracking.
+     *  So when moving from the top left, to the bottom right, you always move down or right and never up or left.
+     *  The algorithm is quick loopint to the nodes only once, but it is not quaranteed the correct answer for all puzzle inputs
+     * @return the shortest path found
+     */
     public long findShortestPathNaive(){
         return findShortestPathNaive(nodes);
     }
 
+    /**
+     *  This alrogrithm assumes that there is no back tracking.
+     *  So when moving from the top left, to the bottom right, you always move down or right and never up or left.
+     *  The algorithm is quick loopint to the nodes only once, but it is not quaranteed the correct answer for all puzzle inputs
+     * @return the shortest path found
+     */
     public long findShortestPathNaiveInBigMap(){
         List<List<Node>>  bigMap = getBigMap();
         return findShortestPathNaive(bigMap);
     }
 
+    /**
+     *  This is an implementation of Dijkstra's shortest path algorithm https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm.
+     *  It always finds the correct answer but it can get slow for very big inputs. It takes up to 15 seconds for the biggest puzzle input
+     *
+     * @return the shortest path found
+     */
     public long findShortestPathDijkstraInBigMap(){
         return findShortestPathDijkstra(getBigMap());
     }
 
+
+    /**
+     *  This is an implementation of Dijkstra's shortest path algorithm https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm.
+     *  It always finds the correct answer but it can get slow for very big inputs. It takes up to 15 seconds for the biggest puzzle input
+     *
+     * @return the shortest path found
+     */
     public long findShortestPathDijkstra(){
         return findShortestPathDijkstra(nodes);
     }

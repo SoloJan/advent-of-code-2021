@@ -41,14 +41,14 @@ public class SyntaxChecker {
 
 
     public Optional<Integer> getSyntaxErrorScore(String string){
-        List<Character> toBeCLosed = new LinkedList<>();
+        List<Character> toBeClosed = new LinkedList<>();
         for(Character character: string.toCharArray()){
             if(tags.values().contains(character)){
-                toBeCLosed.add(character);
+                toBeClosed.add(character);
             }
             if(tags.containsKey(character)){
-                if(toBeCLosed.size()>0 && toBeCLosed.get(toBeCLosed.size()-1).equals(tags.get(character))){
-                    toBeCLosed.remove(toBeCLosed.size()-1);
+                if(toBeClosed.size()>0 && toBeClosed.get(toBeClosed.size()-1).equals(tags.get(character))){
+                    toBeClosed.remove(toBeClosed.size()-1);
                 }
                 else{
                     return Optional.of(syntaxErrorScores.get(character));
