@@ -5,16 +5,11 @@ import util.StringUtil;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static util.CollectionUtil.getDirectNeighbours;
-import static util.CollectionUtil.getFromGrid;
 import static util.FileUtil.readFilePerLine;
 
 public class ShortestPathFinder {
 
-
     private List<List<Node>> nodes = new ArrayList<>();
-    private List<List<Node>>  bigMap = new ArrayList<>();
-    private int countOfVisitedNodes = 0;
 
     public ShortestPathFinder(String fileName){
         List<List<Integer>>  riskLevels = readFilePerLine(fileName).stream().map(StringUtil::toIntegerList).collect(Collectors.toList());
@@ -28,61 +23,46 @@ public class ShortestPathFinder {
 
     }
 
-
-    public long findShortestPathInBigMap(){
-        bigMap = getBigMap();
-        int squareSize = bigMap.size();
-        Node lastNode = bigMap.get(squareSize-1).get(squareSize-1);
-        lastNode.setShortestDistanceToEnd(lastNode.getRiskLevel());
-        for(int i = squareSize-2;   i>= 0; i--){
-            for(int j = squareSize-1; j>=i; j--){
-                Node rowNode =   bigMap.get(i).get(j);
-                if(rowNode.getColumn() == squareSize-1){
-                    rowNode.setShortestDistanceToEnd( rowNode.getRiskLevel() + bigMap.get(i+1).get(j).getShortestDistanceToEnd().get());
-                }
-                else {
-                    rowNode.setShortestDistanceToEnd(rowNode.getRiskLevel() + getLowest(bigMap.get(i + 1).get(j).getShortestDistanceToEnd().get(), bigMap.get(i).get(j + 1).getShortestDistanceToEnd().get()));
-                }
-                Node columnNode =   bigMap.get(j).get(i);
-                if(columnNode.getRow() == squareSize-1){
-                    columnNode.setShortestDistanceToEnd(columnNode.getRiskLevel() + bigMap.get(j).get(i+1).getShortestDistanceToEnd().get());
-                }
-                else {
-                    columnNode.setShortestDistanceToEnd(columnNode.getRiskLevel() + getLowest(bigMap.get(j).get(i+1).getShortestDistanceToEnd().get(), bigMap.get(j+1).get(i).getShortestDistanceToEnd().get()));
-                }
-            }
-        }
-        return bigMap.get(0).get(0).getShortestDistanceToEnd().get() - bigMap.get(0).get(0).getRiskLevel();
+    public long findShortestPathNaive(){
+        return findShortestPathNaive(nodes);
     }
 
+    public long findShortestPathNaiveInBigMap(){
+        List<List<Node>>  bigMap = getBigMap();
+        return findShortestPathNaive(bigMap);
+    }
 
+    public long findShortestPathDijkstraInBigMap(){
+        return findShortestPathDijkstra(getBigMap());
+    }
 
     public long findShortestPathDijkstra(){
-        bigMap = getBigMap();
-        Node startNode = bigMap.get(0).get(0);
+        return findShortestPathDijkstra(nodes);
+    }
+
+    private Long findShortestPathDijkstra(List<List<Node>> nodes) {
+        nodes.forEach(row -> row.forEach(node -> node.setNeighbours(nodes)));
+
+        Node startNode = nodes.get(0).get(0);
         startNode.setShortestDistanceToStart(0l);
         startNode.markVisited();
-        countOfVisitedNodes++;
 
+        int countOfVisitedNodes = 1;
 
-        List<Node> neighbouringNodes = getNeighbours(startNode);
-        neighbouringNodes.forEach(node -> node.setShortestDistanceToStart(startNode));
-        neighbouringNodes.sort(Comparator.comparing(n -> n.getShortestDistanceToStart().get()));
-        neighbouringNodes.get(0).markVisited();
-        countOfVisitedNodes++;
+        List<Node> visitedNodesOnEdge = new ArrayList<>();
+        visitedNodesOnEdge.add(startNode);
 
-        List<Node> visitedNodes = new ArrayList<>();
-        visitedNodes.add(startNode);
-        visitedNodes.add(neighbouringNodes.get(0));
-
-
-
-        while(countOfVisitedNodes < (bigMap.size() * bigMap.size())) {
+        while(countOfVisitedNodes < (nodes.size() * nodes.size())) {
             Node minNode = null;
-            for (Node node :  visitedNodes) {
-                List<Node> neighbours = getNeighbours(node);
+            List<Node> cloneOfVisitedNodes  = new ArrayList<>(visitedNodesOnEdge);
+            for (Node node :  cloneOfVisitedNodes) {
+                List<Node> neighbours = node.getNonVisitedNeighbours();
                 for (Node neighbourNode : neighbours) {
                     if(neighbourNode.isVisited()){
+                        node.removeNeighbour(neighbourNode);
+                        if(node.getNonVisitedNeighbours().isEmpty()){
+                            visitedNodesOnEdge.remove(node);
+                        }
                         continue;
                     }
                     neighbourNode.setShortestDistanceToStart(node);
@@ -91,56 +71,55 @@ public class ShortestPathFinder {
                     }
                 }
             }
-          //  Node nodeToUpdate =  nodes.get(minNode.getRow()).get(minNode.getColumn());
-
-                minNode.markVisited();
-                visitedNodes.add(minNode);
-                countOfVisitedNodes++;
-
+            minNode.markVisited();
+            visitedNodesOnEdge.add(minNode);
+            countOfVisitedNodes++;
         }
-
-        return bigMap.get(bigMap.size()-1).get(bigMap.get(0).size()-1).getShortestDistanceToStart().get();
-
+        return nodes.get(nodes.size()-1).get(nodes.get(0).size()-1).getShortestDistanceToStart().get();
     }
 
-
-
-    public long findShortestPath(){
+    public long findShortestPathNaive(List<List<Node>> nodes){
         int squareSize = nodes.size();
         Node lastNode = nodes.get(squareSize-1).get(squareSize-1);
         lastNode.setShortestDistanceToEnd(lastNode.getRiskLevel());
-        for(int i = squareSize-2;   i>= 0; i--){
-            for(int j = squareSize-1; j>=i; j--){
-              Node rowNode =   nodes.get(i).get(j);
-              if(rowNode.getColumn() == squareSize-1){
-                  rowNode.setShortestDistanceToEnd( rowNode.getRiskLevel() + nodes.get(i+1).get(j).getShortestDistanceToEnd().get());
-              }
-              else {
-                  rowNode.setShortestDistanceToEnd(rowNode.getRiskLevel() + getLowest(nodes.get(i + 1).get(j).getShortestDistanceToEnd().get(), nodes.get(i).get(j + 1).getShortestDistanceToEnd().get()));
-              }
-                Node columnNode =   nodes.get(j).get(i);
-                if(columnNode.getRow() == squareSize-1){
-                    columnNode.setShortestDistanceToEnd(columnNode.getRiskLevel() + nodes.get(j).get(i+1).getShortestDistanceToEnd().get());
-                }
-                else {
-                    columnNode.setShortestDistanceToEnd(columnNode.getRiskLevel() + getLowest(nodes.get(j).get(i+1).getShortestDistanceToEnd().get(), nodes.get(j+1).get(i).getShortestDistanceToEnd().get()));
-                }
-
-
+        // bottom half
+        for(int diagonal = squareSize-2; diagonal>= 0; diagonal--){
+           int row = squareSize-1;
+           int column = diagonal;
+           while(column < squareSize){
+               updateShortestDistanceToEndForNode(nodes, row, column);
+               row --;
+               column++;
+           }
+        }
+        // upper half
+        for(int diagonal =  squareSize-2; diagonal>= 0; diagonal--){
+            int row = 0;
+            int column = diagonal;
+            while(column >= 0){
+                updateShortestDistanceToEndForNode(nodes,  row, column);
+                row ++;
+                column--;
             }
-       }
-        return nodes.get(0).get(0).getShortestDistanceToEnd().get() - nodes.get(0).get(0).getRiskLevel();
+        }
+        return nodes.get(0).get(0).getShortestDistanceToEnd().get() -  nodes.get(0).get(0).getRiskLevel();
     }
 
-
-
-
-    private long getLowest(long x, long x2) {
-        return x <= x2 ? x : x2;
+    private void updateShortestDistanceToEndForNode(List<List<Node>> nodes, int row, int column) {
+        int squareSize = nodes.size();
+        Node node  = nodes.get(row).get(column);
+        if(node.getColumn() == squareSize -1){
+            node.setShortestDistanceToEnd(node.getRiskLevel() + nodes.get(row +1).get(column).getShortestDistanceToEnd().get());
+        }
+        else if(node.getRow() == squareSize -1){
+            node.setShortestDistanceToEnd(node.getRiskLevel() + nodes.get(row).get(column +1).getShortestDistanceToEnd().get());
+        }
+        else {
+            node.setShortestDistanceToEnd(node.getRiskLevel() + Math.min(nodes.get(row + 1).get(column).getShortestDistanceToEnd().get(), nodes.get(row).get(column + 1).getShortestDistanceToEnd().get()));
+        }
     }
 
-
-    public List<List<Node>> getBigMap(){
+    private List<List<Node>> getBigMap(){
         List<List<Node>> bigMap = new ArrayList<>();
         int originalSize = nodes.size();
         for(int row = 0; row < originalSize ; row++){
@@ -161,31 +140,11 @@ public class ShortestPathFinder {
         return bigMap;
     }
 
-
-    private Node mapToNodeInRow(Node node, int size){
-        return new Node(node.getRow(),  node.getColumn() + size, newRiskLevel(node));
-    }
-
-    private Node nodeMapToNewRow(Node node, int size){
-        return new Node(node.getRow() + size,  node.getColumn(), newRiskLevel(node));
-    }
-
     private int newRiskLevel(Node node){
         if(node.getRiskLevel() <9){
             return node.getRiskLevel() +1;
         }
         return 1;
     }
-
-    private List<Node> getNeighbours(Node node){
-        return getDirectNeighbours(bigMap, node.getRow(),node.getColumn()).stream().filter(n -> !n.isVisited()).collect(Collectors.toList());
-    }
-
-
-
-
-
-
-
 
 }

@@ -3,7 +3,11 @@ package day15;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+
+import static util.CollectionUtil.getDirectNeighbours;
 
 
 @Getter
@@ -16,6 +20,9 @@ public class Node {
     private boolean visited;
     private Optional<Long> shortestDistanceToEnd;
     private Optional<Long> shortestDistanceToStart;
+    private List<Node> nonVisitedNeighbours;
+
+
 
     public Node(int row, int column, int riskLevel){
         this.row = row;
@@ -24,6 +31,18 @@ public class Node {
         shortestDistanceToEnd = Optional.empty();
         shortestDistanceToStart = Optional.empty();
         visited = false;
+    }
+
+    public List<Node> getNonVisitedNeighbours(){
+        return new ArrayList<>(nonVisitedNeighbours);
+    }
+
+    void removeNeighbour(Node node){
+        nonVisitedNeighbours.remove(node);
+    }
+
+    void setNeighbours(List<List<Node>> nodes){
+        nonVisitedNeighbours = getDirectNeighbours(nodes, row, column);
     }
 
     public void setShortestDistanceToStart(Node node){
