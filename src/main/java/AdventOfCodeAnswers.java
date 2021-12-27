@@ -12,6 +12,7 @@ import day20.ImageEnhancer;
 import day21.DeterministicDice;
 import day21.DiracDice;
 import day22.ReactorRebooter;
+import day23.AmphipodOrganizer;
 import day25.CucumberOrganizer;
 import day5.HydrothermalVents;
 import day1.SonarSweeper;
@@ -74,6 +75,8 @@ public class AdventOfCodeAnswers {
         System.out.println(String.format("The answer to the day 21 exercise 1 is: %d", new DiracDice().play(5,6)));
         System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").initialReboot()));
         System.out.println(String.format("The answer to the day 22 exercise 1 is: %d", new ReactorRebooter("day22/input.txt").totalReboot()));
+        System.out.println(String.format("The answer to the day 23 exercise 1 is: %d", new AmphipodOrganizer().puzzle1()));
+        System.out.println(String.format("The answer to the day 23 exercise 1 is: %d", new AmphipodOrganizer().puzzle2()));
         System.out.println(String.format("The answer to the day 25 exercise 1 is: %d", new CucumberOrganizer("day25/input.txt").getRoundsToStabalize()));
     }
 

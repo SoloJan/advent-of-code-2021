@@ -3,6 +3,7 @@ package day23;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+
 @Getter
 @EqualsAndHashCode(callSuper = true)
 public class DessertAmphipod extends Amphipod {
@@ -33,6 +34,11 @@ public class DessertAmphipod extends Amphipod {
 
     public Amphipod cloneAmphipod() {
         return new DessertAmphipod(row, column, moves);
+    }
+
+    @Override
+    public String toString(){
+        return "C" + row + column;
     }
 
 }

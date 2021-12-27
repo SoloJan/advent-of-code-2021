@@ -1,6 +1,5 @@
 package day23;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@Disabled
 class AmphipodOrganizerTest {
 
 
@@ -44,65 +42,21 @@ class AmphipodOrganizerTest {
 
 
     @Test
-    void smalRealInput(){
-
-
-        List<Amphipod> amphipods = new ArrayList<>();
-
-        amphipods.add(new BronzeAmphipod(2,2));
-        amphipods.add(new AmberAmphipod(1,2));
-
-        amphipods.add(new DessertAmphipod(2,4));
-        amphipods.add(new CopperAmphipod(1,4));
-
-        amphipods.add(new AmberAmphipod(2,6));
-        amphipods.add(new CopperAmphipod(1,6));
-
-        amphipods.add(new BronzeAmphipod(2,8));
-        amphipods.add(new DessertAmphipod(1,8));
-
+    void puzzle1(){
         AmphipodOrganizer organizer = new AmphipodOrganizer();
-        Long minValueToOrganize =  organizer.organize(amphipods, 3);
+        Long minValueToOrganize =  organizer.puzzle1();
         assertEquals(13066L, minValueToOrganize);
-
-
     }
 
-
-
     @Test
-    void realInput(){
-
-        List<Amphipod> amphipods = new ArrayList<>();
-        amphipods.add(new BronzeAmphipod(4,2));
-        amphipods.add(new DessertAmphipod(3,2));
-        amphipods.add(new DessertAmphipod(2,2));
-        amphipods.add(new AmberAmphipod(1,2));
-
-        amphipods.add(new DessertAmphipod(4,4));
-        amphipods.add(new BronzeAmphipod(3,4));
-        amphipods.add(new CopperAmphipod(2,4));
-        amphipods.add(new CopperAmphipod(1,4));
-
-        amphipods.add(new AmberAmphipod(4,6));
-        amphipods.add(new AmberAmphipod(3,6));
-        amphipods.add(new BronzeAmphipod(2,6));
-        amphipods.add(new CopperAmphipod(1,6));
-
-        amphipods.add(new BronzeAmphipod(4,8));
-        amphipods.add(new CopperAmphipod(3,8));
-        amphipods.add(new AmberAmphipod(2,8));
-        amphipods.add(new DessertAmphipod(1,8));
+    void puzzle2(){
         AmphipodOrganizer organizer = new AmphipodOrganizer();
-        Long minValueToOrganize =  organizer.organize(amphipods);
+        Long minValueToOrganize =  organizer.puzzle2();
         assertEquals(47328L, minValueToOrganize);
-
     }
 
-
-
     @Test
-    void smallExampleImput(){
+    void puzzle1ExampleInput(){
         List<Amphipod> amphipods = new ArrayList<>();
         amphipods.add(new AmberAmphipod(2,2));
         amphipods.add(new BronzeAmphipod(1,2));
@@ -117,11 +71,11 @@ class AmphipodOrganizerTest {
         amphipods.add(new DessertAmphipod(1,8));
         AmphipodOrganizer organizer = new AmphipodOrganizer();
         Long minValueToOrganize =  organizer.organize(amphipods, 3);
-        assertEquals(44169L, minValueToOrganize);
+        assertEquals(12521L, minValueToOrganize);
     }
 
     @Test
-    void exampleImput(){
+    void puzzle2ExampleInput(){
         List<Amphipod> amphipods = new ArrayList<>();
         amphipods.add(new AmberAmphipod(4,2));
         amphipods.add(new DessertAmphipod(3,2));

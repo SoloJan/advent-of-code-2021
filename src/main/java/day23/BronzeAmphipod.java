@@ -37,6 +37,9 @@ public class BronzeAmphipod extends Amphipod {
         return new BronzeAmphipod(row, column, moves);
     }
 
-
+    @Override
+    public String toString(){
+        return "B" + row + column;
+    }
 
 }

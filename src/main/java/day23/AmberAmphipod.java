@@ -2,6 +2,7 @@ package day23;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @EqualsAndHashCode
@@ -22,6 +23,10 @@ public class AmberAmphipod extends Amphipod {
         super(row, column, moves);
     }
 
+    @Override
+    public String toString(){
+        return "A" + row + column;
+    }
 
     @Override
     protected int getEnergyPerStep() {
@@ -37,4 +42,6 @@ public class AmberAmphipod extends Amphipod {
     public Amphipod cloneAmphipod() {
         return new AmberAmphipod(row, column, moves);
     }
+
+
 }

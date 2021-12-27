@@ -35,4 +35,9 @@ public class CopperAmphipod extends Amphipod {
     public Amphipod cloneAmphipod() {
         return new CopperAmphipod(row, column, moves);
     }
+
+    @Override
+    public String toString(){
+        return "C" + row + column;
+    }
 }
